@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { StoreContext } from "../store/Store";
 
 const Blog = () => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<any[]>([]);
   const [loadLimit, setLoadLimit] = useState(11);
   const [totalData, setTotalData] = useState(0);
 
@@ -20,10 +20,10 @@ const Blog = () => {
 
   const [data, setData] = React.useContext(StoreContext);
 
-  const pushToFav = (post) => {
+  const pushToFav = (post: any) => {
     if (!data.includes(post)) {
       setData([...data, post]);
-      localStorage.setItem(post.id, JSON.stringify(post))
+      localStorage.setItem(post.id, JSON.stringify(post));
     }
   };
 
@@ -45,12 +45,16 @@ const Blog = () => {
       <List aria-label="contacts">
         {posts.map((post, index) => (
           <>
-            <ListItem disablePadding >
+            <ListItem disablePadding>
               <ListItemButton key={index}>
                 <ListItemIcon onClick={() => pushToFav(post)}>
-                {post.id === JSON.parse(localStorage.getItem(post.id))?.id ? <StarIcon color="primary" />
-                    : <StarIcon color="disabled" />
-                  }
+                  {post.id ===
+                  (JSON.parse(localStorage.getItem(post.id) || "{}")
+                    ?.id as any) ? (
+                    <StarIcon color="primary" />
+                  ) : (
+                    <StarIcon color="disabled" />
+                  )}
                 </ListItemIcon>
                 <ListItemText
                   disableTypography

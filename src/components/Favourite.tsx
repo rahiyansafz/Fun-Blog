@@ -10,7 +10,7 @@ const Favourite = () => {
     <>
       {data.length > 0 ? (
         <>
-          {data.map((posts, index) => (
+          {data.map((posts: any, index: number) => (
             <>
               <Box key={index}>
                 <Typography
@@ -32,7 +32,7 @@ const Favourite = () => {
                     sx={{ cursor: "pointer" }}
                     onClick={() => {
                       const item = data.filter(
-                        (ele) => ele.id !== posts.id
+                        (ele: any) => ele.id !== posts.id
                       );
                       setData(item);
                       localStorage.removeItem(posts.id);

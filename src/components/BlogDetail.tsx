@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export default function BlogDetail() {
-  const [blog, setBlog] = useState();
+  const [blog, setBlog] = useState<any>();
   const location = useLocation();
 
   useEffect(() => {

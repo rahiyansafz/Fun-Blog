@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: any) => {
   return (
     <Box
       sx={{
