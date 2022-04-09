@@ -34,7 +34,15 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      sx={{
+        height: "50px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -75,9 +83,13 @@ const Navbar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <Link to={page.to} style={{ textDecoration: "none" }}>
-                  <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+              {pages.map((page, index) => (
+                <Link
+                  to={page.to}
+                  style={{ textDecoration: "none" }}
+                  key={index}
+                >
+                  <MenuItem onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">{page.name}</Typography>
                   </MenuItem>
                 </Link>
@@ -93,10 +105,9 @@ const Navbar = () => {
             Blog Site
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Link to={page.to} style={{ textDecoration: "none" }}>
+            {pages.map((page, index) => (
+              <Link to={page.to} style={{ textDecoration: "none" }} key={index}>
                 <Button
-                  key={page.name}
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}
                 >

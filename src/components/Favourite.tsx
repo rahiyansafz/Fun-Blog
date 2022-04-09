@@ -11,8 +11,8 @@ const Favourite = () => {
       {data.length > 0 ? (
         <>
           {data.map((posts: any, index: number) => (
-            <>
-              <Box key={index}>
+            <React.Fragment key={index}>
+              <Box>
                 <Typography
                   variant="h5"
                   gutterBottom
@@ -49,7 +49,7 @@ const Favourite = () => {
                 </Stack>
                 <Divider sx={{ m: 2 }} />
               </Box>
-            </>
+            </React.Fragment>
           ))}
         </>
       ) : (

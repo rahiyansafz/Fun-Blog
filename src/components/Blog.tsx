@@ -21,7 +21,8 @@ const Blog = () => {
   const [data, setData] = React.useContext(StoreContext);
 
   const pushToFav = (post: any) => {
-    if (!data.includes(post)) {
+    let index = data.findIndex((item: any) => item.id === post.id);
+    if (index === -1) {
       setData([...data, post]);
       localStorage.setItem(post.id, JSON.stringify(post));
     }
@@ -43,10 +44,10 @@ const Blog = () => {
   return (
     <Box>
       <List aria-label="contacts">
-        {posts.map((post, index) => (
-          <>
+        {posts.map((post: any, index: number) => (
+          <React.Fragment key={index}>
             <ListItem disablePadding>
-              <ListItemButton key={index}>
+              <ListItemButton>
                 <ListItemIcon onClick={() => pushToFav(post)}>
                   {post.id ===
                   (JSON.parse(localStorage.getItem(post.id) || "{}")
@@ -73,10 +74,10 @@ const Blog = () => {
               </ListItemButton>
             </ListItem>
             <Divider />
-          </>
+          </React.Fragment>
         ))}
       </List>
-      {loadLimit < totalData ? (
+      {loadLimit < totalData && posts.length ? (
         <Typography
           variant="body1"
           gutterBottom
