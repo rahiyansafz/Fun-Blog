@@ -90,7 +90,7 @@ const Blog = () => {
           }}
           align="right"
           color="blue"
-          onClick={() => setLoadLimit(101)}
+          onClick={() => setLoadLimit(totalData)}
         >
           See all posts
         </Typography>
